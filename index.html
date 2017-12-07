@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BOPATG</title>
+</head>
+
+<body>
+    <h1>Bootstrap One Page Template Generator</h1>
+    <p>Enter comma separated list of section names and click on <strong>"Generate"</strong>.</p>
+    <input type="text" id="inputNames" style="width: 35%;" value="brand,about,contact" />
+    <button onclick="generate()">Generate</button>
+    <div>
+        <p>Generated source code:</p>
+        <textarea style="width: 70%; height: 400px;" id="result" disabled>The generated source code will be displayed here!</textarea>
+    </div>
+    <button onclick="download()">Download</button>
+    <script type="text/javascript">
+    const inputNames = document.getElementById("inputNames");
+    const result = document.getElementById("result");
+
+    function download() {
+        let downloadLink = document.createElement('a');
+        downloadLink.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(result.value));
+        downloadLink.setAttribute('download', "BOPATG.html");
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+
+    function generate() {
+        const namesValue = inputNames.value;
+        let template = 
+           "<!DOCTYPE html>\n" +
+"<html lang='en'>\n" +
+"<head>\n" + 
+   "<meta charset='utf-8'>\n" +
+  "<meta name='viewport' content='width=device-width, initial-scale=1'>\n" +
+  "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>" +
+ "<script src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous'></scr"+"ipt>\n" +
+"<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js' integrity='sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh' crossorigin='anonymous'></scr"+"ipt>\n" +
+"<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js' integrity='sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ' crossorigin='anonymous'></scr"+"ipt>\n" +
+
+"<style>\n" +
+  ".bg-1 {\n" + 
+     "background-color: #1abc9c; /* Green */\n" +
+      "color: #ffffff;\n" +
+  "}\n" +
+  ".bg-2 { \n" +
+      "background-color: #474e5d; /* Dark Blue */\n" +
+      "color: #ffffff;\n" +
+  "}\n" +
+  ".bg-3 { \n" +
+      "background-color: #fff; /* White */\n" +
+      "color: #555555;\n" +
+  "}\n" +
+
+   ".container-fluid {" +
+    "padding-top: 70px;" +
+    "padding-bottom: 70px;" +
+"}" +
+
+  "</style>\n" +
+
+
+
+ 
+"</head>\n" +
+"<body>\n" +
+
+"<div class='container-fluid bg-1 text-center'>\n" +
+  "<h3>$REPLACE_ME$</h3>\n" +
+  "<img src='smoke.jpg' class='img-circle' alt='Bird' width='350' height='350'>\n" +
+  "<h3>I'm an adventurer</h3>\n" +
+"</div>\n" +
+"<div class='container-fluid bg-2 text-center'>\n" +
+  "<h3>What Am I?</h3>\n" +
+  "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n" +
+"</div>" +
+
+"<div class='container-fluid bg-3 text-center'>\n" +
+  "<h3>Where To Find Me?</h3>\n" +
+    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n" +
+   "<a href='#'' class='btn btn-default btn-lg'>\n" +
+  "<span class='glyphicon glyphicon-search'></span>\n" + 
+  "Search\n" +
+"</a>\n" +
+
+
+"</div>" +
+
+
+
+
+"</body>\n" +
+"</html>\n";
+var REPLACE_ME = ""
+        const names = namesValue.split(',');
+        for (var i = 0; i < names.length; i++) {
+            var name = names[i];
+            REPLACE_ME += "<p>" + name + "</p>\n";
+        }
+        template = template.replace("$REPLACE_ME$", REPLACE_ME);
+          
+
+
+
+
+result.innerHTML = template;
+       
+    }
+    </script>
+</body>
+
+</html>
